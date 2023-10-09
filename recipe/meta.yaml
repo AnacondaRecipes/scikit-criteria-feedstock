@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/scikit-criteria-{{ version }}.tar.gz
-  sha256: d3cda3103ba8030409de8804ddcfceba596faf4897cc4798766d6d171e0437d9
+  url: https://github.com/quatrope/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  sha256: e004dd6492b12532959df7ac8e0469c4a6f71d0f6dcf787c30d7ef23f7d72aba
 
 build:
   # skip s390x because of missing pulp for s390x
@@ -40,10 +40,16 @@ requirements:
 test:
   imports:
     - skcriteria
+  source_files:
+    - tests
   commands:
     - pip check
+    - pytest tests
   requires:
     - pip
+    - pytest
+    - pytest-ordering
+    - pyquery
 
 about:
   home: https://scikit-criteria.quatrope.org
