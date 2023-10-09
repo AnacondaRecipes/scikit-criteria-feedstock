@@ -11,6 +11,8 @@ source:
   sha256: d3cda3103ba8030409de8804ddcfceba596faf4897cc4798766d6d171e0437d9
 
 build:
+  # skip s390x because of missing pulp for s390x
+  skip: True  # [linux and s390x]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
