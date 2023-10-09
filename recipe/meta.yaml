@@ -44,11 +44,17 @@ test:
     - pip
 
 about:
-  home: http://scikit-criteria.org/
-  summary: |
-    Scikit-Criteria is a collection of Multiple-criteria decision analysis (MCDA) methods integrated into scientific python stack. Is Open source and commercially usable.
+  home: https://scikit-criteria.quatrope.org
   license: BSD-3-Clause
   license_file: LICENSE.txt
+  license_family: BSD
+  summary: Scikit-Criteria is a collection of Multiple-criteria decision analysis methods integrated into python.
+  description: |
+    Scikit-Criteria is a collection of Multiple-criteria decision analysis (MCDA) methods integrated into scientific
+    python stack. Is Open source and commercially usable.
+  doc_url: https://scikit-criteria.quatrope.org/en/latest/tutorial/index.html
+  dev_url: https://github.com/quatrope/scikit-criteria
+
 
 extra:
   recipe-maintainers:
