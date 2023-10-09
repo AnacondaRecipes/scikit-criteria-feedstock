@@ -16,10 +16,12 @@ build:
 
 requirements:
   host:
+    - python
     - pip
-    - python >=3.6
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
+    - python
     - numpy
     - pandas
     - scipy
