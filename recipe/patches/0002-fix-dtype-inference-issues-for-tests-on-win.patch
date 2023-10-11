@@ -1,0 +1,38 @@
+From 540ab66a3c39bb853a3bb0a4ea42c2f1057b535e Mon Sep 17 00:00:00 2001
+From: Jack Olivieri <jolivieri@anaconda.com>
+Date: Wed, 11 Oct 2023 13:11:23 +0200
+Subject: [PATCH 2/5] fix dtype inference issues for tests on win
+
+---
+ tests/agg/test_similarity.py | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/tests/agg/test_similarity.py b/tests/agg/test_similarity.py
+index 1eff118..ac1b985 100644
+--- a/tests/agg/test_similarity.py
++++ b/tests/agg/test_similarity.py
+@@ -50,7 +50,9 @@ def test_TOPSIS():
+     ranker = TOPSIS()
+     result = ranker.evaluate(dm)
+ 
+-    assert result.values_equals(expected)
++    # assert result.values_equals(expected)
++    assert np.array_equal(result.rank_, expected.rank_)
++    assert np.array_equal(result.alternatives, expected.alternatives)
+     assert result.method == expected.method
+     assert np.all(result.e_.ideal == expected.e_.ideal)
+     assert np.allclose(result.e_.anti_ideal, expected.e_.anti_ideal)
+@@ -106,7 +108,9 @@ def test_TOPSIS_tzeng2011multiple():
+     ranker = TOPSIS()
+     result = ranker.evaluate(dm)
+ 
+-    assert result.values_equals(expected)
++    # assert result.values_equals(expected)
++    assert np.array_equal(result.rank_, expected.rank_)
++    assert np.array_equal(result.alternatives, expected.alternatives)
+     assert result.method == expected.method
+     assert np.allclose(
+         result.e_.similarity, expected.e_.similarity, atol=1.0e-4
+-- 
+2.39.3 (Apple Git-145)
+

@@ -1,0 +1,27 @@
+From b7299d0a3868f7d10e9dec7a1b669e19525b7934 Mon Sep 17 00:00:00 2001
+From: Jack Olivieri <jolivieri@anaconda.com>
+Date: Wed, 11 Oct 2023 13:11:38 +0200
+Subject: [PATCH 4/5] fix dtype inference issues for tests on win
+
+---
+ tests/agg/test_simus.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/tests/agg/test_simus.py b/tests/agg/test_simus.py
+index 20cafbf..f7040c3 100644
+--- a/tests/agg/test_simus.py
++++ b/tests/agg/test_simus.py
+@@ -64,7 +64,9 @@ def test_SIMUS_munier24metodo():
+     ranker = SIMUS()
+     result = ranker.evaluate(dm, b=b)
+ 
+-    assert result.values_equals(expected)
++    # assert result.values_equals(expected)
++    assert np.array_equal(result.rank_, expected.rank_)
++    assert np.array_equal(result.alternatives, expected.alternatives)
+     assert result.method == expected.method
+     assert np.all(result.e_.b == b)
+     assert np.all(result.e_.rank_by == expected.e_.rank_by)
+-- 
+2.39.3 (Apple Git-145)
+

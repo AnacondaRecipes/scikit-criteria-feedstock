@@ -1,0 +1,59 @@
+From 16fde3600294fc5076e4e607b9257f7324d09659 Mon Sep 17 00:00:00 2001
+From: Jack Olivieri <jolivieri@anaconda.com>
+Date: Wed, 11 Oct 2023 13:11:30 +0200
+Subject: [PATCH 3/5] fix dtype inference issues for tests on win
+
+---
+ tests/agg/test_simple.py | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/tests/agg/test_simple.py b/tests/agg/test_simple.py
+index 99c17a7..6e686ca 100644
+--- a/tests/agg/test_simple.py
++++ b/tests/agg/test_simple.py
+@@ -47,7 +47,9 @@ def test_WeightedSumModel():
+ 
+     result = ranker.evaluate(dm)
+ 
+-    assert result.values_equals(expected)
++    # assert result.values_equals(expected)
++    assert np.array_equal(result.rank_, expected.rank_)
++    assert np.array_equal(result.alternatives, expected.alternatives)
+     assert result.method == expected.method
+     assert np.all(result.e_.score == expected.e_.score)
+ 
+@@ -124,7 +126,9 @@ def test_WeightedSumModel_kracka2010ranking():
+     ranker = WeightedSumModel()
+     result = ranker.evaluate(dm)
+ 
+-    assert result.values_equals(expected)
++    # assert result.values_equals(expected)
++    assert np.array_equal(result.rank_, expected.rank_)
++    assert np.array_equal(result.alternatives, expected.alternatives)
+     assert result.method == expected.method
+     assert np.allclose(result.e_.score, expected.e_.score)
+ 
+@@ -151,7 +155,9 @@ def test_WeightedProductModel():
+ 
+     result = ranker.evaluate(dm)
+ 
+-    assert result.values_equals(expected)
++    # assert result.values_equals(expected)
++    assert np.array_equal(result.rank_, expected.rank_)
++    assert np.array_equal(result.alternatives, expected.alternatives)
+     assert result.method == expected.method
+     assert np.allclose(result.e_.score, expected.e_.score)
+ 
+@@ -211,6 +217,8 @@ def test_WeightedProductModel_enwiki_1015567716():
+     ranker = WeightedProductModel()
+     result = ranker.evaluate(dm)
+ 
+-    assert result.values_equals(expected)
++    # assert result.values_equals(expected)
++    assert np.array_equal(result.rank_, expected.rank_)
++    assert np.array_equal(result.alternatives, expected.alternatives)
+     assert result.method == expected.method
+     assert np.allclose(result.e_.score, expected.e_.score)
+-- 
+2.39.3 (Apple Git-145)
+
