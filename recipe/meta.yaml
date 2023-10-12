@@ -23,6 +23,8 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
+  build:        # [win]
+    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -66,6 +68,7 @@ test:
     - pytest
     - pytest-ordering
     - pyquery
+    - tk  # [win]
 
 about:
   home: https://scikit-criteria.quatrope.org
