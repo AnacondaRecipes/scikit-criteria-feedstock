@@ -9,13 +9,12 @@ package:
 source:
   url: https://github.com/quatrope/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
   sha256: e004dd6492b12532959df7ac8e0469c4a6f71d0f6dcf787c30d7ef23f7d72aba
-
-patches:                                                            # [win]
-  - patches/0001-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
-  - patches/0002-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
-  - patches/0003-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
-  - patches/0004-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
-  - patches/0005-do-not-use-assert-frame_equals.patch               # [win]
+  patches:                                                            # [win]
+    - patches/0001-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
+    - patches/0002-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
+    - patches/0003-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
+    - patches/0004-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
+    - patches/0005-do-not-use-assert-frame_equals.patch               # [win]
 
 build:
   # skip s390x because of missing pulp for s390x
