@@ -24,7 +24,8 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
-  build:        # [win]
+  build:
+    - patch     # [osx and x86_64]
     - m2-patch  # [win]
   host:
     - python
