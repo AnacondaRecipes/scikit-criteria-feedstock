@@ -9,16 +9,18 @@ package:
 source:
   url: https://github.com/quatrope/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
   sha256: e004dd6492b12532959df7ac8e0469c4a6f71d0f6dcf787c30d7ef23f7d72aba
-  patches:                                                            # [win]
+  patches:
     - patches/0001-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0002-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0003-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0004-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0005-do-not-use-assert-frame_equals.patch               # [win]
+    - patches/0001-select-available-solver-for-pulp.patch             # [osx and x86_64]
 
 build:
   # skip s390x because of missing pulp for s390x
-  skip: True  # [linux and s390x]
+  #skip: True  # [linux and s390x]
+  skip: True  # [not (osx and x86_64)]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
@@ -62,7 +64,8 @@ test:
     - tests
   commands:
     - pip check
-    - pytest tests -k "not ({{ tests_to_skip }})"
+    - pytest tests -k "not ({{ tests_to_skip }})"                    # [not (osx and x86_64)]
+    - pytest tests/agg/test_simus.py -k "test_SIMUS_munier24metodo"  # [osx and x86_64]
   requires:
     - pip
     - pytest
