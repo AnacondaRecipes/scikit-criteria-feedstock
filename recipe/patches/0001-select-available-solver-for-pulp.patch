@@ -17,7 +17,7 @@ index e591bb4..b7e3c31 100644
          problem = self._problem.copy()
 -        problem.solve()
 +        solver_list = pulp.list_solvers(onlyAvailable=True)
-+        if len(solver_list) > 0:
++        if len(solver_list) == 1:
 +            solver = pulp.getSolver(solver_list[0])
 +            problem.solve(solver)
 +        else:
