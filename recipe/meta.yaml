@@ -9,7 +9,7 @@ package:
 source:
   url: https://github.com/quatrope/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
   sha256: e004dd6492b12532959df7ac8e0469c4a6f71d0f6dcf787c30d7ef23f7d72aba
-  patches:
+  patches:   # [win]
     - patches/0001-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0002-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0003-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
