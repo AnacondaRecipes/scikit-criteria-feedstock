@@ -15,12 +15,10 @@ source:
     - patches/0003-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0004-fix-dtype-inference-issues-for-tests-on-win.patch  # [win]
     - patches/0005-do-not-use-assert-frame_equals.patch               # [win]
-    # - patches/0001-select-available-solver-for-pulp.patch             # [osx and x86_64]
 
 build:
   # skip s390x because of missing pulp for s390x
-  # skip: True  # [s390x]
-  skip: True  # [not (osx and x86_64)]
+  skip: True  # [s390x]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
