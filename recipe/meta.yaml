@@ -48,7 +48,8 @@ requirements:
     - matplotlib-base !=3.6.1
     - methodtools
 
-# skipping test_is_available because of inability of pulp to set solver properly (has to be investigated separately)
+# skipping test_is_available because pulp solvers involved in test are supposed to be installed as separate
+# dependencies but are not strictly necessary for pulp to work (default solver is COIN_CMD)
 {% set tests_to_skip = "test_is_available" %}
 # skipping test_StdWeighter as the assertion that fails has to do with machine precision when performing matrix
 # calculation --> results make sense minus negligible errors
